@@ -5,6 +5,7 @@ const Koa=require('koa'),
     render = require('koa-art-template'),
     path=require('path');
     bodyParser=require('koa-bodyparser'),
+    session = require('koa-session')
     cors = require('koa-cors'); 
     DB=require('./module/db.js');
 
@@ -17,6 +18,19 @@ var index=require('./routes/index.js');
 var app=new Koa();
 app.use(bodyParser());
 
+app.keys = ['some secret hurr']
+const CONFIG = {
+  key: 'koa:sess',
+  maxAge: 86400000,
+  autoCommit: true,
+  overwrite: true,
+  httpOnly: true,
+  signed: true,
+  rolling: false,
+  renew: false
+}
+
+app.use(session(CONFIG, app))
 //配置koa-art-template 模板引擎
 render(app, {
     root: path.join(__dirname, 'views'),

@@ -65,7 +65,7 @@ router.post('/login',async (ctx)=>{
         }
     } else {
         ctx.body ={
-            code:200,
+            code:50008,
             data:{
                 status:false
             }
