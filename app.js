@@ -6,7 +6,7 @@ const Koa=require('koa'),
     path=require('path');
     bodyParser=require('koa-bodyparser'),
     session = require('koa-session')
-    cors = require('koa-cors'); 
+    // cors = require('koa-cors'); 
     DB=require('./module/db.js');
 
 //引入子模块
@@ -20,11 +20,12 @@ app.use(bodyParser());
 
 app.keys = ['some secret hurr']
 const CONFIG = {
-  key: 'koa:sess',
+  key: 'token',
   maxAge: 86400000,
   autoCommit: true,
+  path:"/",  
   overwrite: true,
-  httpOnly: true,
+  httpOnly: false,
   signed: true,
   rolling: false,
   renew: false
@@ -37,13 +38,13 @@ render(app, {
     extname: '.html',
     debug: process.env.NODE_ENV !== 'production'
 });
-app.use(cors({
-    origin:'http://localhost:9528',
-    credentials:true,
-    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-    allowMethods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
- }));
+// app.use(cors({
+//     origin:'http://localhost:9528',
+//     credentials:true,
+//     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+//     allowMethods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+//     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+//  }));
 //配置路由
 router.use(index);
 /*
