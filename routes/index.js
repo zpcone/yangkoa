@@ -34,7 +34,11 @@ router.post('/doLogin',async (ctx)=>{
         ctx.body ={
             code:200,
             data:{
-                status:true
+                status:true,
+                userInfo:{
+                    username:ctx.request.body.username,
+                    password:ctx.request.body.password
+                }
             }
         }
     } else {

@@ -18,5 +18,9 @@ router.get('/focus',(ctx)=>{
 
     ctx.body={"title":"这是一个轮播图的api"};
 })
+router.get('/getAllGuest',async(ctx)=>{
+    var result=await DB.find('guest')
+    console.log(result)
+})
 
 module.exports=router.routes();

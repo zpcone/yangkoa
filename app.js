@@ -12,7 +12,7 @@ const Koa=require('koa'),
 //引入子模块
 // const cors = require('koa-cors');  
 var admin=require('./routes/admin.js');
-var api=require('./routes/api.js');
+var guest=require('./routes/guest.js');
 var index=require('./routes/index.js');
 
 var app=new Koa();
@@ -56,7 +56,7 @@ router.use('/admin',admin);
 /*
  /api/newslist   新闻列表的api
  */
-router.use('/api',api);   /*在模块里面暴露路由并且启动路由*/
+router.use('/guest',guest);   /*在模块里面暴露路由并且启动路由*/
 
 //启动路由
 app.use(router.routes()).use(router.allowedMethods());
